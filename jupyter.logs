@@ -1,0 +1,34 @@
+[I 18:16:32.546 NotebookApp] Serving notebooks from local directory: /media/pemfir/Data2/classes/computer_vision_book/computer-vision-ND
+[I 18:16:32.546 NotebookApp] The Jupyter Notebook is running at:
+[I 18:16:32.546 NotebookApp] http://localhost:8888/?token=c30979f5e30ba3ef528233d837ea2d72ceecc56c6fb337c8
+[I 18:16:32.546 NotebookApp]  or http://127.0.0.1:8888/?token=c30979f5e30ba3ef528233d837ea2d72ceecc56c6fb337c8
+[I 18:16:32.546 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 18:16:32.549 NotebookApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///home/pemfir/.local/share/jupyter/runtime/nbserver-22227-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/?token=c30979f5e30ba3ef528233d837ea2d72ceecc56c6fb337c8
+     or http://127.0.0.1:8888/?token=c30979f5e30ba3ef528233d837ea2d72ceecc56c6fb337c8
+[E 18:16:33.879 NotebookApp] Could not open static file ''
+[W 18:16:33.951 NotebookApp] 404 GET /static/components/react/react-dom.production.min.js (127.0.0.1) 6.16ms referer=http://localhost:8888/tree?token=c30979f5e30ba3ef528233d837ea2d72ceecc56c6fb337c8
+[W 18:16:33.977 NotebookApp] 404 GET /static/components/react/react-dom.production.min.js (127.0.0.1) 0.92ms referer=http://localhost:8888/tree?token=c30979f5e30ba3ef528233d837ea2d72ceecc56c6fb337c8
+[W 18:16:38.784 NotebookApp] 404 GET /static/components/react/react-dom.production.min.js (127.0.0.1) 1.12ms referer=http://localhost:8888/notebooks/project_2_image_captioning_project/0_Dataset.ipynb
+[W 18:16:38.815 NotebookApp] 404 GET /static/components/react/react-dom.production.min.js (127.0.0.1) 0.99ms referer=http://localhost:8888/notebooks/project_2_image_captioning_project/0_Dataset.ipynb
+[I 18:16:39.107 NotebookApp] 302 GET /notebooks/project_2_image_captioning_project/images/coco-examples.jpg (127.0.0.1) 0.68ms
+[I 18:16:39.221 NotebookApp] 302 GET /notebooks/project_2_image_captioning_project/images/encoder-decoder.png (127.0.0.1) 0.67ms
+[I 18:16:39.248 NotebookApp] Kernel started: cc68a3f0-5658-42b2-b249-c7139dc06eb3
+[I 18:16:39.637 NotebookApp] Adapting from protocol version 5.1 (kernel cc68a3f0-5658-42b2-b249-c7139dc06eb3) to 5.3 (client).
+[W 18:18:09.507 NotebookApp] 404 GET /static/components/react/react-dom.production.min.js (127.0.0.1) 2.75ms referer=http://localhost:8888/notebooks/project_2_image_captioning_project/1_Preliminaries.ipynb
+[W 18:18:09.539 NotebookApp] 404 GET /static/components/react/react-dom.production.min.js (127.0.0.1) 0.94ms referer=http://localhost:8888/notebooks/project_2_image_captioning_project/1_Preliminaries.ipynb
+[W 18:18:09.734 NotebookApp] Notebook project_2_image_captioning_project/1_Preliminaries.ipynb is not trusted
+[I 18:18:10.500 NotebookApp] 302 GET /notebooks/project_2_image_captioning_project/images/encoder.png (127.0.0.1) 0.67ms
+[I 18:18:10.536 NotebookApp] 302 GET /notebooks/project_2_image_captioning_project/images/decoder.png (127.0.0.1) 0.67ms
+[I 18:18:10.591 NotebookApp] Kernel started: 84318949-9051-4de8-a363-d06148e2541f
+[I 18:18:10.934 NotebookApp] Adapting from protocol version 5.1 (kernel 84318949-9051-4de8-a363-d06148e2541f) to 5.3 (client).
+[I 18:18:18.361 NotebookApp] Starting buffering for 84318949-9051-4de8-a363-d06148e2541f:9e6d3c2542554df29a5c28501e329c05
+[I 18:18:18.609 NotebookApp] Kernel shutdown: 84318949-9051-4de8-a363-d06148e2541f
+[I 18:18:18.621 NotebookApp] Kernel started: ced95082-b43c-4b9a-90bc-982a1c84463b
+[I 18:18:19.048 NotebookApp] Adapting from protocol version 5.1 (kernel ced95082-b43c-4b9a-90bc-982a1c84463b) to 5.3 (client).
+[I 18:20:10.598 NotebookApp] Saving file at /project_2_image_captioning_project/1_Preliminaries.ipynb
+[W 18:20:10.599 NotebookApp] Notebook project_2_image_captioning_project/1_Preliminaries.ipynb is not trusted

@@ -91,6 +91,7 @@ celerybeat-schedule
 
 # Environments
 .env
+.idea
 .venv
 env/
 venv/
@@ -110,3 +111,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# big data
+project_2_image_captioning_project/coco/images/
+project_2_image_captioning_project/coco/annotations/
+# project_2_image_captioning_project/coco/

@@ -20,7 +20,7 @@ def get_loader(transform,
                unk_word="<unk>",
                vocab_from_file=True,
                num_workers=0,
-               cocoapi_loc='/Users/bjartesunde/Dropbox/Udacity/Computer Vision Nanodegree/computer-vision-ND/project_2_image_captioning_project/cocoapi'):
+               cocoapi_loc='/media/pemfir/Data2/classes/computer_vision_book/computer-vision-ND/project_2_image_captioning_project'):
     """Returns the data loader.
     Args:
       transform: Image transform.
@@ -43,14 +43,14 @@ def get_loader(transform,
     # Based on mode (train, val, test), obtain img_folder and annotations_file.
     if mode == 'train':
         if vocab_from_file==True: assert os.path.exists(vocab_file), "vocab_file does not exist.  Change vocab_from_file to False to create vocab_file."
-        img_folder = os.path.join(cocoapi_loc, '/Users/bjartesunde/Dropbox/Udacity/Computer Vision Nanodegree/computer-vision-ND/project_2_image_captioning_project/cocoapi/images/train2014/')
-        annotations_file = os.path.join(cocoapi_loc, '/Users/bjartesunde/Dropbox/Udacity/Computer Vision Nanodegree/computer-vision-ND/project_2_image_captioning_project/cocoapi/annotations/captions_train2014.json')
+        img_folder = os.path.join(cocoapi_loc , 'coco/images/train2014/')
+        annotations_file = os.path.join(cocoapi_loc, 'coco/annotations/captions_train2014.json')
     if mode == 'test':
         assert batch_size==1, "Please change batch_size to 1 if testing your model."
         assert os.path.exists(vocab_file), "Must first generate vocab.pkl from training data."
         assert vocab_from_file==True, "Change vocab_from_file to True."
-        img_folder = os.path.join(cocoapi_loc, 'cocoapi/images/test2014/')
-        annotations_file = os.path.join(cocoapi_loc, 'cocoapi/annotations/image_info_test2014.json')
+        img_folder = os.path.join(cocoapi_loc, 'coco/images/test2014/')
+        annotations_file = os.path.join(cocoapi_loc, 'coco/annotations/image_info_test2014.json')
 
     # COCO caption dataset.
     dataset = CoCoDataset(transform=transform,
@@ -96,8 +96,13 @@ class CoCoDataset(data.Dataset):
         self.img_folder = img_folder
         if self.mode == 'train':
             self.coco = COCO(annotations_file)
+            # example of one coco.anns, the first key is 48
+            # {48: {'image_id': 318556,
+            #   'id': 48,
+            #   'caption': 'A very clean and well decorated empty bathroom'},
             self.ids = list(self.coco.anns.keys())
             print('Obtaining caption lengths...')
+            # tokenizing captions into lists
             all_tokens = [nltk.tokenize.word_tokenize(str(self.coco.anns[self.ids[index]]['caption']).lower()) for index in tqdm(np.arange(len(self.ids)))]
             self.caption_lengths = [len(token) for token in all_tokens]
         else:
@@ -108,8 +113,8 @@ class CoCoDataset(data.Dataset):
         # obtain image and caption if in training mode
         if self.mode == 'train':
             ann_id = self.ids[index]
-            caption = self.coco.anns[ann_id]['caption']
-            img_id = self.coco.anns[ann_id]['image_id']
+            caption = self.coco.anns[ann_id]['caption']  #e.g.'caption': 'A very clean and well decorated empty bathroom'
+            img_id = self.coco.anns[ann_id]['image_id']  #e.g. 'id': 48,
             path = self.coco.loadImgs(img_id)[0]['file_name']
 
             # Convert image to tensor and pre-process using transform
@@ -121,6 +126,7 @@ class CoCoDataset(data.Dataset):
             caption = []
             caption.append(self.vocab(self.vocab.start_word))
             caption.extend([self.vocab(token) for token in tokens])
+            # envokes method __call__ of class vocab which converts a token to its index
             caption.append(self.vocab(self.vocab.end_word))
             caption = torch.Tensor(caption).long()
 
@@ -140,6 +146,7 @@ class CoCoDataset(data.Dataset):
             return orig_image, image
 
     def get_train_indices(self):
+        # this mathod seems to be based on a paper
         sel_length = np.random.choice(self.caption_lengths)
         all_indices = np.where([self.caption_lengths[i] == sel_length for i in np.arange(len(self.caption_lengths))])[0]
         indices = list(np.random.choice(all_indices, size=self.batch_size))

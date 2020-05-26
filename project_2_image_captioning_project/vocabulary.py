@@ -12,7 +12,7 @@ class Vocabulary(object):
         start_word="<start>",
         end_word="<end>",
         unk_word="<unk>",
-        annotations_file='/Users/bjartesunde/Dropbox/Udacity/Computer Vision Nanodegree/computer-vision-ND/project_2_image_captioning_project/cocoapi/annotations/captions_train2014.json',
+        annotations_file='.coco/annotations/captions_train2014.json',
         vocab_from_file=False):
         """Initialize the vocabulary.
         Args:
@@ -30,6 +30,7 @@ class Vocabulary(object):
         self.start_word = start_word
         self.end_word = end_word
         self.unk_word = unk_word
+        print("amir 2 ", annotations_file)
         self.annotations_file = annotations_file
         self.vocab_from_file = vocab_from_file
         self.get_vocab()
@@ -70,6 +71,7 @@ class Vocabulary(object):
 
     def add_captions(self):
         """Loop over training captions and add all tokens to the vocabulary that meet or exceed the threshold."""
+        print("amir printing:", self.annotations_file)
         coco = COCO(self.annotations_file)
         counter = Counter()
         ids = coco.anns.keys()

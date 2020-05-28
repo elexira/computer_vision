@@ -63,26 +63,26 @@ class DecoderRNN(nn.Module):
         " accepts pre-processed image tensor (inputs) and returns predicted sentence (list of tensor ids of length max_len) "
         prediction_list = list()
         start_embedding = self.word_embeddings(torch.tensor([0]).to('cuda')).unsqueeze(0)
-        print("start_embedding:", start_embedding.shape)
+        # print("start_embedding:", start_embedding.shape)
         features_updated = inputs
-        print("features_updated:", features_updated.shape)
-        print("features_updated values:", features_updated[0, 0, 1:10])
+        # print("features_updated:", features_updated.shape)
+        # print("features_updated values:", features_updated[0, 0, 1:10])
         lstm_input = torch.cat((features_updated, start_embedding), 1)
-        print("lstm_input:", lstm_input.shape)
-        print("lstm_input values:", lstm_input[0, :, 0:10])
+        # print("lstm_input:", lstm_input.shape)
+        # print("lstm_input values:", lstm_input[0, :, 0:10])
         lstm_output, (h, c) = self.lstm(lstm_input)
-        print("lstm_output, (h, c)", lstm_output.shape, h.shape, c.shape)
-        print("lstm_h values", h[0, 0, 1:10])
+        # print("lstm_output, (h, c)", lstm_output.shape, h.shape, c.shape)
+        # print("lstm_h values", h[0, 0, 1:10])
         # h.view(num_layers, num_directions, batch, hidden_size) # if you want to parse h
         fc_input = lstm_output[:, -1, :].reshape(1, self.hidden_size)
-        print("the input sending to fc", fc_input.shape)
+        # print("the input sending to fc", fc_input.shape)
         fc_output = self.fc(fc_input)  # i get 2 predictions, only want the last prediction, the first one is <start>
-        print("fc_output", fc_output.shape)
+        # print("fc_output", fc_output.shape)
         prediction_index = torch.argmax(fc_output, dim=1)
-        print("prediction_index", prediction_index.shape)
+        # print("prediction_index", prediction_index.shape)
         prediction_list.append(int(prediction_index.cpu().numpy()[0]))
         word_embedding = self.word_embeddings(prediction_index).unsqueeze(0)
-        print("word_embedding", word_embedding.shape)
+        # print("word_embedding", word_embedding.shape)
         for pred in range(max_len):
             if prediction_index != 1:
                 # check here if the prediction is not end
@@ -102,19 +102,4 @@ class DecoderRNN(nn.Module):
         # FC weights as random uniform
         self.fc.weight.data.uniform_(-1, 1)
 
-
-        # init forget gate bias to 1
-        # for names in self.lstm._all_weights:
-        #     for name in filter(lambda n: "bias" in n,  names):
-        #         bias = getattr(self.lstm, name)
-        #         n = bias.size(0)
-        #         start, end = n//4, n//2
-        #         bias.data[start:end].fill_(1.)
-        # "Importantly, adding a bias of size 1 significantly improved 
-        # the performance of the LSTM on tasks where it fell behind the 
-        # GRU and MUT1. Thus we recommend adding a bias of 1 to the forget 
-        # gate of every LSTM in every application; it is easy to do often 
-        # results in better performance on our tasks. This adjustment is 
-        # the simple improvement over the LSTM that we set out to discover."
-        # http://proceedings.mlr.press/v37/jozefowicz15.pdf
-        # https://discuss.pytorch.org/t/set-forget-gate-bias-of-lstm/1745/4
+        

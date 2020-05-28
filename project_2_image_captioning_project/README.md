@@ -1,3 +1,6 @@
+The location of this repo: 
+/media/pemfir/Data2/classes/computer_vision_book/computer-vision-ND
+
 # Image Captioning Project
 
 In this project, I design and train a CNN-RNN (Convolutional Neural Network - Recurrent Neural Network) model for  automatically generating image captions. The network is trained on the Microsoft Common Objects in COntext [(MS COCO)](http://cocodataset.org/#home) dataset. The image captioning model is displayed below.

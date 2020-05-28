@@ -115,4 +115,5 @@ venv.bak/
 # big data
 project_2_image_captioning_project/coco/images/
 project_2_image_captioning_project/coco/annotations/
+attention_videos/
 # project_2_image_captioning_project/coco/
